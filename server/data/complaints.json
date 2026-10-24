@@ -1,5 +1,77 @@
 [
   {
+    "ticketId": "CIV-2026-0004",
+    "issueType": "pothole",
+    "categoryLabel": "pothole",
+    "description": "Severe surface depression and fractured asphalt layer with visible loose aggregate and aggregate detachment. High hazard for two-wheelers and night commuters.",
+    "severity": "high",
+    "impactScore": 78,
+    "impactBreakdown": {
+      "severityComponent": {
+        "score": 40,
+        "max": 40,
+        "label": "Severity rating (HIGH)"
+      },
+      "safetyHazardComponent": {
+        "score": 38,
+        "max": 40,
+        "label": "Public Safety & Transit Risk"
+      },
+      "duplicateDensityComponent": {
+        "score": 0,
+        "max": 20,
+        "label": "Citizen Density (0 existing reports)"
+      }
+    },
+    "imagePath": "blob:http://localhost:5174/afa2e5b6-ed93-4d52-83c6-44fda606f438",
+    "areaName": "ahmedabad ",
+    "wardId": "DEMO-WARD-01",
+    "wardName": "Navrangpura Ward #09",
+    "departmentId": "DEMO-ROADS",
+    "departmentName": "Roads & Bridges Engineering Department",
+    "status": "Submitted",
+    "citizenContact": "Anonymous Citizen",
+    "createdAt": "2026-10-24T13:13:47.560Z",
+    "updatedAt": "2026-10-24T13:13:47.560Z",
+    "statusHistory": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-10-24T13:13:47.560Z",
+        "actor": "Citizen (CivicSathi AI)",
+        "note": "Complaint verified and registered into municipal demo queue."
+      }
+    ],
+    "agentTrace": [
+      {
+        "step": "vision_analysis",
+        "detail": "Analyzed photo with civil engineering vision model.",
+        "mode": "demo"
+      },
+      {
+        "step": "ward_lookup",
+        "detail": "Resolved area 'ahmedabad ' to mock ward 'undefined'.",
+        "mode": "rule"
+      },
+      {
+        "step": "dept_lookup",
+        "detail": "Deterministic routing to Roads & Bridges Engineering Department.",
+        "mode": "rule"
+      },
+      {
+        "step": "confirmation",
+        "detail": "Citizen reviewed and confirmed ticket details.",
+        "mode": "user"
+      },
+      {
+        "step": "persisted",
+        "detail": "Ticket CIV-2026-0004 saved to complaints.json storage.",
+        "mode": "system"
+      }
+    ],
+    "analysisMode": "demo",
+    "demoOnly": true
+  },
+  {
     "ticketId": "CIV-2026-0001",
     "issueType": "pothole",
     "categoryLabel": "Pothole / Road Damage",
@@ -31,11 +103,31 @@
       }
     ],
     "agentTrace": [
-      { "step": "vision_analysis", "detail": "Pretrained vision identified deep pothole with 94% confidence.", "mode": "demo" },
-      { "step": "ward_lookup", "detail": "Matched area 'Navrangpura' to DEMO-WARD-01 (Navrangpura Ward #09).", "mode": "rule" },
-      { "step": "dept_lookup", "detail": "Mapped issue 'pothole' to Roads & Bridges Engineering Department.", "mode": "rule" },
-      { "step": "duplicate_check", "detail": "No prior unresolved duplicate found at creation time.", "mode": "rule" },
-      { "step": "ticket_persisted", "detail": "Ticket generated and persisted into local complaints store.", "mode": "system" }
+      {
+        "step": "vision_analysis",
+        "detail": "Pretrained vision identified deep pothole with 94% confidence.",
+        "mode": "demo"
+      },
+      {
+        "step": "ward_lookup",
+        "detail": "Matched area 'Navrangpura' to DEMO-WARD-01 (Navrangpura Ward #09).",
+        "mode": "rule"
+      },
+      {
+        "step": "dept_lookup",
+        "detail": "Mapped issue 'pothole' to Roads & Bridges Engineering Department.",
+        "mode": "rule"
+      },
+      {
+        "step": "duplicate_check",
+        "detail": "No prior unresolved duplicate found at creation time.",
+        "mode": "rule"
+      },
+      {
+        "step": "ticket_persisted",
+        "detail": "Ticket generated and persisted into local complaints store.",
+        "mode": "system"
+      }
     ],
     "analysisMode": "demo",
     "demoOnly": true
@@ -72,9 +164,21 @@
       }
     ],
     "agentTrace": [
-      { "step": "vision_analysis", "detail": "Identified scattered domestic and commercial plastic waste.", "mode": "demo" },
-      { "step": "ward_lookup", "detail": "Mapped 'Satellite' to Satellite & Jodhpur Ward #15.", "mode": "rule" },
-      { "step": "dept_lookup", "detail": "Routing to Solid Waste Management.", "mode": "rule" }
+      {
+        "step": "vision_analysis",
+        "detail": "Identified scattered domestic and commercial plastic waste.",
+        "mode": "demo"
+      },
+      {
+        "step": "ward_lookup",
+        "detail": "Mapped 'Satellite' to Satellite & Jodhpur Ward #15.",
+        "mode": "rule"
+      },
+      {
+        "step": "dept_lookup",
+        "detail": "Routing to Solid Waste Management.",
+        "mode": "rule"
+      }
     ],
     "analysisMode": "demo",
     "demoOnly": true
@@ -117,9 +221,21 @@
       }
     ],
     "agentTrace": [
-      { "step": "vision_analysis", "detail": "Vision identified broken luminaire and damaged pole fixture.", "mode": "demo" },
-      { "step": "ward_lookup", "detail": "Mapped 'Bodakdev' to Bodakdev Ward #12.", "mode": "rule" },
-      { "step": "dept_lookup", "detail": "Assigned to Streetlight & Electrical Infrastructure.", "mode": "rule" }
+      {
+        "step": "vision_analysis",
+        "detail": "Vision identified broken luminaire and damaged pole fixture.",
+        "mode": "demo"
+      },
+      {
+        "step": "ward_lookup",
+        "detail": "Mapped 'Bodakdev' to Bodakdev Ward #12.",
+        "mode": "rule"
+      },
+      {
+        "step": "dept_lookup",
+        "detail": "Assigned to Streetlight & Electrical Infrastructure.",
+        "mode": "rule"
+      }
     ],
     "analysisMode": "demo",
     "demoOnly": true

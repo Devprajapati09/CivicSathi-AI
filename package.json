@@ -1,0 +1,14 @@
+{
+  "name": "civicsathi-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CivicSathi AI fullstack project – runs client and server together",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "install-all": "npm install && npm install --prefix client && npm install --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

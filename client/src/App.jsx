@@ -27,13 +27,14 @@ function App() {
   const renderTrack = () => (
     <TrackStatus onDone={() => setView('home')} />
   );
-
+  const renderAdmin = () => (<AdminPanel onDone={() => setView('home')} />);
   return (
     <div className="app-container">
       {view === 'home' && renderHome()}
       {view === 'report' && renderReport()}
       {view === 'receipt' && renderReceipt()}
       {view === 'track' && renderTrack()}
+      {view === 'admin' && renderAdmin()}
     </div>
   );
 }
@@ -150,6 +151,79 @@ function Receipt({ ticket, onDone }) {
 
 /*** TrackStatus Component ***/
 function TrackStatus({ onDone }) {
+  // ... existing TrackStatus code unchanged ...
+}
+
+/*** AdminPanel Component ***/
+function AdminPanel({ onDone }) {
+  const [ticketId, setTicketId] = useState('');
+  const [newStatus, setNewStatus] = useState('');
+  const [msg, setMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const updateStatus = async () => {
+    if (!ticketId || !newStatus) { setMsg('Provide ID and status'); return; }
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/complaints/${ticketId}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+      const data = await res.json();
+      if (data.success) setMsg('Status updated');
+      else setMsg(data.error || 'Update failed');
+    } catch (e) { setMsg(e.message); }
+    setLoading(false);
+  };
+
+  return (
+    <section className="admin">
+      <h2>Admin Panel</h2>
+      <div className="form-group">
+        <label>Ticket ID</label>
+        <input type="text" value={ticketId} onChange={e => setTicketId(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <label>New Status</label>
+        <input type="text" value={newStatus} onChange={e => setNewStatus(e.target.value)} />
+      </div>
+      {msg && <div className="error">{msg}</div>}
+      <div className="actions">
+        <button className="secondary" onClick={onDone}>Back</button>
+        <button className="primary" onClick={updateStatus} disabled={loading}>Update</button>
+      </div>
+    </section>
+  );
+}
+
+/*** Updated ReportIssue Component ***/
+function ReportIssue({ onComplete, onCancel }) {
+  // existing state declarations unchanged up to line 47
+  const [duplicateWarning, setDuplicateWarning] = useState('');
+  // existing code up to startAnalysis function unchanged
+  const startAnalysis = async () => {
+    if (!photo || !area) { setError('Please provide a photo and area name.'); return; }
+    setLoading(true);
+    setError('');
+    setDuplicateWarning('');
+    try {
+      const form = new FormData();
+      form.append('photo', photo);
+      form.append('area', area);
+      const res = await fetch('/api/analyze', { method: 'POST', body: form });
+      const data = await res.json();
+      if (data.success) {
+        setAnalysis(data.analysis);
+        if (data.duplicate) setDuplicateWarning('Possible duplicate issue detected.');
+      } else {
+        setError(data.error || 'Analysis failed');
+      }
+    } catch (e) { setError(e.message); }
+    finally { setLoading(false); }
+  };
+  // rest of component unchanged after line 80
+
   const [searchId, setSearchId] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
