@@ -1,0 +1,276 @@
+CivicSathi AI
+3-Hour Product Requirements Document
+AI-Powered Civic Complaint AgentGoogle Antigravity • React + Express • Local JSONVersion 1.1 | 24 October 2026
+BUILD PRINCIPLEShip one complete, reliable journey: upload photo → analyze issue → select mock ward/department → confirm complaint → save ticket ID → retrieve status. Add only one differentiator after this works.
+1. Executive Summary
+CivicSathi AI is a hackathon prototype that helps citizens report potholes, garbage accumulation, broken streetlights, and waterlogging. A citizen uploads a photo and types an area name. The app analyzes the image using a pretrained vision model when configured, looks up a ward and department from local mock data, asks the citizen to confirm, creates a persistent ticket, and later answers status questions using the saved record.
+This PRD is optimized for a strict three-hour build in Google Antigravity. No custom model training, real AMC integration, complex maps, login system, or notification integrations are required. The municipal workflow is simulated locally and must be labelled as demo data.
+2. Problem and Product Goal
+Problem: people often give up reporting civic issues because they must identify the correct ward and department, file a complaint, and repeatedly follow up.
+Goal: reduce this effort to a short photo-and-area workflow, then provide a real local tracking ID and status lookup.
+Success in the demo means
+Upload/select a sample photo and show a preview.
+Return live vision analysis if configured, otherwise clearly label the selected demo scenario.
+Map a known typed area to a mock ward and department.
+Require citizen confirmation before ticket creation.
+Persist a unique ticket ID in local JSON.
+Retrieve the saved status by ID and reflect admin status changes.
+Show the agent’s steps in the UI rather than only a generic chatbot response.
+3. Strict Scope for Three Hours
+Priority
+Build this
+Do not spend time on
+P0 — required
+Photo upload/preview; image analysis or labelled demo fallback; area-to-ward lookup; department mapping; ticket creation; status lookup; simple clean UI.
+Training a model; real AMC API; authentication; production deployment; complex GIS.
+P1 — one USP
+Duplicate check by issue category + area, with a possible-match warning. If this delays P0, skip it.
+Multiple advanced USPs, custom embeddings, advanced geospatial matching.
+P2 — only if time remains
+Simple admin status-update control and a basic timeline.
+Voice, full Gujarati/Hindi localization, email/SMS, live map, elaborate analytics.
+4. Target Users
+User
+Need
+Outcome
+Citizen
+Report an issue without knowing municipal structures.
+Receives a saved ticket ID.
+Returning citizen
+Check progress without repeating the report.
+Gets status from stored ticket data.
+Demo judge/admin
+Verify the flow and change a ticket status.
+Updated status is visible on the next lookup.
+5. Functional Requirements
+ID
+Requirement
+Acceptance condition
+FR-01
+Photo input
+Accept JPG/JPEG/PNG/WebP; validate type and size; show preview.
+FR-02
+Image understanding
+Identify likely issue and provide short description; use uncertainty when unclear.
+FR-03
+Fallback
+Without API key, offer a clearly labelled demo scenario; never claim preset output is live AI.
+FR-04
+Area lookup
+Resolve known seeded area to mock ward; unknown area triggers correction rather than invented data.
+FR-05
+Department mapping
+Use deterministic local mapping from issue type to department.
+FR-06
+Confirmation
+Citizen reviews issue, area, ward, and department before ticket is saved.
+FR-07
+Ticket creation
+Generate unique ID and persist issue, area, ward, department, status, timestamp, and image reference.
+FR-08
+Status lookup
+Retrieve real saved status by ticket ID; unknown ID returns a not-found response.
+FR-09
+Agent trace
+Show steps: analyzing photo, looking up area, preparing ticket, saving ticket.
+FR-10
+Persistence
+Ticket remains after backend restart; no success message if save fails.
+FR-11
+Admin update (stretch)
+Allow status change and append a timestamped history entry.
+6. USP — What Makes It Different
+Primary USP: Evidence-to-Action Civic AI
+Instead of merely classifying a photo, CivicSathi turns the photo and area into a structured, trackable complaint using a sequence of tools.
+USP 1 — Duplicate Complaint Intelligence (best optional feature)
+Before ticket creation, search unresolved local tickets for the same issue category and area. Show a possible match and its ticket ID. Let the citizen continue with a new ticket or refer to the existing one. Never automatically reject a complaint.
+USP 2 — Explainable Civic Impact Score (stretch)
+If the core flow is complete, calculate a prototype score from 0–100 using visible severity (0–40), potential safety risk (0–40), and similar reports (0–20). Explain the components and label it a demo estimate, not an official AMC priority.
+USP 3 — Real Status, Not a Fake Chatbot
+The status assistant must retrieve the saved ticket from JSON. Demonstrate a status update and then ask for the status again.
+Three-hour rule: implement the primary workflow first; duplicate checking is the one recommended USP. Impact scoring is optional.
+7. User Journey
+Citizen opens Report Issue.
+Uploads a photo and enters an area name.
+Backend runs live vision analysis or labelled demo mode.
+Citizen reviews and corrects the issue classification.
+Backend looks up the mock ward and department.
+Optional duplicate check shows matching unresolved reports.
+Citizen confirms the complaint.
+Backend saves a unique ticket ID and returns a receipt.
+Citizen enters the ID or asks a status question.
+Status tool fetches the stored record and returns the latest status.
+8. AI/ML Approach
+Do not train a custom model during this sprint unless the event explicitly requires it. Use a pretrained vision-capable API (for example, a configured Gemini vision-capable model) for image understanding. This is pretrained-model integration, not training your own model.
+Task
+Implementation
+Truthfulness rule
+Image classification
+Vision API on backend, if configured.
+Only report what the model returns; permit user correction.
+Demo fallback
+Selectable preset scenarios or clearly labelled demo classifier.
+Always display Demo mode.
+Ward/department
+Normal deterministic JavaScript lookup against JSON.
+Never ask the LLM to invent an official ward.
+Ticket creation
+Backend validation and JSON persistence.
+Create only after user confirmation.
+Status answer
+Fetch saved record and summarize it.
+Never invent a status.
+Duplicate check
+Exact category + normalized area + unresolved status.
+Treat results as candidates, not proof.
+9. Technology Stack
+Layer
+Technology
+Use
+AI coding environment
+Google Antigravity
+Generate/edit code, run terminal commands, and test in browser where available.
+Frontend
+React + Vite
+Single-page web UI and fast development.
+Styling
+Plain CSS (recommended for speed)
+Responsive cards, forms, progress steps, status badges.
+Backend
+Node.js + Express
+REST API, validation, orchestration, agent tools.
+AI model
+Pretrained Gemini vision-capable API if available
+Photo interpretation; key remains server-side.
+Storage
+Local JSON files
+Mock wards, departments, complaints, counter.
+Uploads
+Local server uploads folder
+Store demo images safely.
+Testing
+Browser manual tests + simple API tests
+Verify end-to-end flow and persistence.
+Version control
+Git + .gitignore
+Avoid committing secrets and uploads.
+9.1 Deliberately excluded
+No Supabase setup, custom model training, user authentication, real AMC API, official GIS boundaries, email/SMS, voice, or complex dashboard in the three-hour MVP.
+10. Minimal Architecture
+React UI  -> Express API      -> analyzeIssueImage()  [vision API or labelled demo mode]      -> lookupWardDepartment() [local JSON]      -> detectDuplicates() [optional]      -> createComplaintTicket() [local JSON]      -> getComplaintStatus() [local JSON]
+The browser must not read or write JSON files directly. All persistence and API secrets stay on the backend.
+11. Minimal Data Model
+wards.json
+[  { "wardId": "DEMO-WARD-01", "wardName": "Sample Ward North",    "areaAliases": ["Example Area A"], "demoOnly": true }]
+departments.json
+[  { "departmentId": "DEMO-ROADS", "departmentName": "Roads Department",    "issueTypes": ["pothole", "road_damage"], "demoOnly": true }]
+complaints.json
+[  {    "ticketId": "CIV-2026-0001",    "issueType": "pothole",    "description": "Visible road surface damage",    "imagePath": "uploads/sample.jpg",    "areaName": "Example Area A",    "wardId": "DEMO-WARD-01",    "departmentId": "DEMO-ROADS",    "status": "Submitted",    "createdAt": "ISO-8601 timestamp",    "updatedAt": "ISO-8601 timestamp",    "statusHistory": [],    "analysisMode": "demo",    "demoOnly": true  }]
+These are illustrative seed records. Use a persistent counter or collision-safe ID generation. Serialize JSON writes and handle file errors. Local JSON is acceptable for a single-process demo, not production multi-user traffic.
+12. Minimal API Endpoints
+Method + endpoint
+Purpose
+POST /api/analyze
+Upload and analyze photo; return live/demo mode.
+GET /api/wards/lookup?area=...
+Return matching mock ward and department or an ambiguity result.
+POST /api/complaints
+Validate confirmation, save ticket, return ticket ID.
+GET /api/complaints/:ticketId
+Return saved complaint and status or 404.
+GET /api/complaints
+List tickets for a simple admin screen (optional).
+PATCH /api/complaints/:ticketId/status
+Update status and append history (stretch).
+POST /api/complaints/duplicates
+Find possible matches (optional USP).
+13. Minimal UI Screens
+Screen
+Must contain
+Home
+Product name, Report Issue button, Track Complaint input, demo label.
+Report
+Photo upload/preview, area field, Analyze button, loading/error state.
+Review
+Issue summary, editable category/area, mock ward/department, Confirm button.
+Receipt
+Ticket ID, issue, area, department, status, timestamp.
+Track
+Ticket ID input, status response from saved record.
+Admin (stretch)
+List tickets and update status.
+Design direction: professional civic-tech interface, navy/teal palette, clear labels, responsive cards, accessible contrast, and explicit mock/demo labels. Prioritize working controls over elaborate animation.
+14. Three-Hour Build Schedule
+Elapsed time
+Task
+Deliverable
+00:00–00:20
+Setup
+React and Express run; seed JSON files exist.
+00:20–01:00
+Backend core
+Ward lookup, ticket creation, status retrieval; test with API requests.
+01:00–01:45
+Citizen UI
+Upload/preview, area input, review, receipt, status lookup.
+01:45–02:15
+Image analysis
+Integrate vision API if ready; otherwise working labelled demo mode.
+02:15–02:35
+One USP
+Duplicate detection by category and area, if P0 works.
+02:35–03:00
+Test and polish
+Persistence, errors, one admin status update if feasible, rehearse demo.
+Checkpoint: by minute 60, ticket creation and status lookup should work through the backend. If not, stop extra features and finish the core flow.
+15. Acceptance Checklist
+Frontend and backend start with documented commands.
+Photo can be selected and previewed; invalid files are rejected.
+Live analysis is labelled live; fallback is labelled demo.
+Known area maps to seeded mock ward; unknown area is not fabricated.
+No ticket is created before confirmation.
+Ticket ID is unique and the saved ticket survives a server restart.
+Valid ID returns the actual status; unknown ID returns not found.
+Admin status change, if implemented, is reflected in the next status query.
+Possible duplicate is a suggestion and never blocks a citizen automatically.
+AI/storage failure does not produce a false success message.
+16. Two-Minute Demo Script
+Upload a prepared pothole photo and enter a seeded demo area.
+Show image analysis and visible agent steps.
+Show mock ward and department selection.
+If implemented, show a possible duplicate; otherwise move directly to confirmation.
+Confirm the report and show the generated ticket ID.
+Retrieve the ticket status.
+If admin update is ready, change it to In Progress and retrieve status again.
+State clearly that tickets and ward records are local mock data, not a real AMC submission.
+17. Security and Limitations
+Store AI API keys only in backend .env; add .env to .gitignore and provide .env.example.
+Validate image MIME/type and size; do not trust file extensions alone.
+Do not expose stack traces, API keys, or arbitrary file paths.
+Use mock ward mappings and label them as demonstration data.
+AI image analysis and severity can be wrong; let the citizen correct the result.
+Impact score is an illustrative rule, not official policy.
+JSON storage is for a small local single-process demo only.
+No actual complaint is submitted to AMC.
+18. Antigravity Master Prompt
+Paste the prompt below into Antigravity after opening the project folder. Tell the agent to implement and test, not only plan.
+Build CivicSathi AI as a working three-hour hackathon prototype using React + Vite, plain CSS, Node.js + Express, and local JSON files. The flow must be: upload/preview a photo -> live pretrained vision analysis if GEMINI_API_KEY is configured, otherwise clearly labelled demo mode -> citizen reviews issue and types area -> lookup mock ward/department from JSON -> citizen confirms -> create persistent unique ticket ID -> retrieve status by ID. Implement separate backend functions analyzeIssueImage, lookupWardDepartment, createComplaintTicket, and getComplaintStatus. Add visible agent progress steps. If the core works, add duplicate detection using issue category + area and show possible matches without rejecting reports. Use mock AMC data only; never connect to a real portal or claim real submission. Keep API keys on the backend. Validate uploads and inputs, handle errors honestly, and ensure JSON records persist after restart. Do not train a custom model, build complex maps, or add authentication. Start both apps, test the full flow, fix errors, and provide exact run commands. Finish the core flow before polishing the UI.
+19. Definition of Done
+The build is complete when a judge can select or upload a photo, enter a known area, review live or clearly labelled demo analysis, confirm the complaint, receive a unique locally persisted ticket ID, and retrieve the saved status. Duplicate detection is the recommended differentiator only after this path works.
+Appendix — Seeded Demo Scenarios
+Scenario
+Expected result
+Pothole + known area
+Roads department, ticket ID, retrievable status.
+Garbage + known area
+Sanitation mapping and distinct issue type.
+Broken streetlight
+Streetlight-related department mapping.
+Waterlogging
+Drainage-related mapping.
+Unknown area
+Ask for clarification; do not invent a ward.
+Unknown ticket ID
+Return not found.
+Repeated category + area
+Show possible unresolved duplicate if USP implemented.

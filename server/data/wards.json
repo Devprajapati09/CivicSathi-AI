@@ -1,0 +1,95 @@
+[
+  {
+    "wardId": "DEMO-WARD-01",
+    "wardName": "Navrangpura Ward #09",
+    "zone": "West Zone (Mock AMC)",
+    "areaAliases": [
+      "Navrangpura",
+      "C.G. Road",
+      "CG Road",
+      "Gujarat University",
+      "University Area",
+      "Law Garden",
+      "Mithakhali",
+      "Commerce Six Roads"
+    ],
+    "officerInCharge": "Shri Rajesh Patel (Ward Engineer)",
+    "demoOnly": true
+  },
+  {
+    "wardId": "DEMO-WARD-02",
+    "wardName": "Bodakdev & Judges Bungalow Ward #12",
+    "zone": "North West Zone (Mock AMC)",
+    "areaAliases": [
+      "Bodakdev",
+      "Judges Bungalow",
+      "Judges Bungalow Road",
+      "SG Highway North",
+      "Pakwan Cross Roads",
+      "Sindhu Bhavan"
+    ],
+    "officerInCharge": "Smt. Meera Shah (Zonal Inspector)",
+    "demoOnly": true
+  },
+  {
+    "wardId": "DEMO-WARD-03",
+    "wardName": "Satellite & Jodhpur Ward #15",
+    "zone": "South West Zone (Mock AMC)",
+    "areaAliases": [
+      "Satellite",
+      "Jodhpur",
+      "Shivranjani",
+      "Shyamal Cross Roads",
+      "Prahlad Nagar",
+      "Anandnagar"
+    ],
+    "officerInCharge": "Shri Amit Trivedi (Ward Officer)",
+    "demoOnly": true
+  },
+  {
+    "wardId": "DEMO-WARD-04",
+    "wardName": "Vastrapur & Thaltej Ward #11",
+    "zone": "North West Zone (Mock AMC)",
+    "areaAliases": [
+      "Vastrapur",
+      "Vastrapur Lake",
+      "Thaltej",
+      "Gurukul Road",
+      "Drive-In Road",
+      "Memnagar",
+      "Himalaya Mall"
+    ],
+    "officerInCharge": "Er. Kirit Varma (Assistant Engineer)",
+    "demoOnly": true
+  },
+  {
+    "wardId": "DEMO-WARD-05",
+    "wardName": "Maninagar & Kankaria Ward #24",
+    "zone": "South Zone (Mock AMC)",
+    "areaAliases": [
+      "Maninagar",
+      "Kankaria",
+      "Kankaria Lake",
+      "Jawahar Chowk",
+      "Rambaug",
+      "Bhairavnath"
+    ],
+    "officerInCharge": "Shri Vikram Rathod (Senior Superintendent)",
+    "demoOnly": true
+  },
+  {
+    "wardId": "DEMO-WARD-06",
+    "wardName": "Sabarmati & Chandkheda Ward #03",
+    "zone": "West Zone (Mock AMC)",
+    "areaAliases": [
+      "Sabarmati",
+      "Chandkheda",
+      "Motera",
+      "Narendra Modi Stadium",
+      "D-Cabin",
+      "Visat"
+    ],
+    "officerInCharge": "Er. Dipak Joshi (Field Supervisor)",
+    "demoOnly": true
+  }
+]

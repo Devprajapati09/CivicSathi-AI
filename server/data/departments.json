@@ -1,0 +1,65 @@
+[
+  {
+    "departmentId": "DEMO-ROADS",
+    "departmentName": "Roads & Bridges Engineering Department",
+    "category": "road",
+    "slaHours": 48,
+    "contact": "roads-mock@amc.gov.in.demo",
+    "issueTypes": [
+      "pothole",
+      "road_damage",
+      "broken_pavement",
+      "open_trench",
+      "divider_broken",
+      "asphalt_sinkhole"
+    ],
+    "demoOnly": true
+  },
+  {
+    "departmentId": "DEMO-SWM",
+    "departmentName": "Solid Waste Management & Public Sanitation",
+    "category": "garbage",
+    "slaHours": 24,
+    "contact": "swm-mock@amc.gov.in.demo",
+    "issueTypes": [
+      "garbage",
+      "dumping",
+      "overflowing_bin",
+      "debris",
+      "construction_debris",
+      "dead_animal"
+    ],
+    "demoOnly": true
+  },
+  {
+    "departmentId": "DEMO-LIGHT",
+    "departmentName": "Streetlight & Electrical Infrastructure",
+    "category": "streetlight",
+    "slaHours": 24,
+    "contact": "streetlight-mock@amc.gov.in.demo",
+    "issueTypes": [
+      "broken_streetlight",
+      "dark_stretch",
+      "wire_hazard",
+      "hanging_wire",
+      "traffic_signal_down",
+      "pole_tilted"
+    ],
+    "demoOnly": true
+  },
+  {
+    "departmentId": "DEMO-DRAIN",
+    "departmentName": "Drainage & Stormwater Network Department",
+    "category": "waterlogging",
+    "slaHours": 36,
+    "contact": "drainage-mock@amc.gov.in.demo",
+    "issueTypes": [
+      "waterlogging",
+      "sewage_overflow",
+      "drain_clogged",
+      "manhole_open",
+      "pipe_leakage"
+    ],
+    "demoOnly": true
+  }
+]

@@ -1,0 +1,127 @@
+[
+  {
+    "ticketId": "CIV-2026-0001",
+    "issueType": "pothole",
+    "categoryLabel": "Pothole / Road Damage",
+    "description": "Deep asphalt pothole near University circle causing two-wheeler skids",
+    "severity": "high",
+    "impactScore": 82,
+    "imagePath": "/sample-images/pothole.jpg",
+    "areaName": "Navrangpura",
+    "wardId": "DEMO-WARD-01",
+    "wardName": "Navrangpura Ward #09",
+    "departmentId": "DEMO-ROADS",
+    "departmentName": "Roads & Bridges Engineering Department",
+    "status": "In Progress",
+    "citizenContact": "9876543210",
+    "createdAt": "2026-10-24T10:15:00.000Z",
+    "updatedAt": "2026-10-24T14:30:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-10-24T10:15:00.000Z",
+        "actor": "Citizen (CivicSathi AI)",
+        "note": "Initial verified report submitted with evidence photo."
+      },
+      {
+        "status": "In Progress",
+        "timestamp": "2026-10-24T14:30:00.000Z",
+        "actor": "Admin (Roads Engineer)",
+        "note": "Field repair team dispatched with cold asphalt mix."
+      }
+    ],
+    "agentTrace": [
+      { "step": "vision_analysis", "detail": "Pretrained vision identified deep pothole with 94% confidence.", "mode": "demo" },
+      { "step": "ward_lookup", "detail": "Matched area 'Navrangpura' to DEMO-WARD-01 (Navrangpura Ward #09).", "mode": "rule" },
+      { "step": "dept_lookup", "detail": "Mapped issue 'pothole' to Roads & Bridges Engineering Department.", "mode": "rule" },
+      { "step": "duplicate_check", "detail": "No prior unresolved duplicate found at creation time.", "mode": "rule" },
+      { "step": "ticket_persisted", "detail": "Ticket generated and persisted into local complaints store.", "mode": "system" }
+    ],
+    "analysisMode": "demo",
+    "demoOnly": true
+  },
+  {
+    "ticketId": "CIV-2026-0002",
+    "issueType": "garbage",
+    "categoryLabel": "Garbage Accumulation",
+    "description": "Overflowing waste bin and scattered plastic near Shivranjani cross roads",
+    "severity": "medium",
+    "impactScore": 68,
+    "imagePath": "/sample-images/garbage.jpg",
+    "areaName": "Satellite",
+    "wardId": "DEMO-WARD-03",
+    "wardName": "Satellite & Jodhpur Ward #15",
+    "departmentId": "DEMO-SWM",
+    "departmentName": "Solid Waste Management & Public Sanitation",
+    "status": "Under Inspection",
+    "citizenContact": "9825012345",
+    "createdAt": "2026-10-24T11:45:00.000Z",
+    "updatedAt": "2026-10-24T13:10:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-10-24T11:45:00.000Z",
+        "actor": "Citizen (CivicSathi AI)",
+        "note": "Citizen reported unattended garbage pile near commercial hub."
+      },
+      {
+        "status": "Under Inspection",
+        "timestamp": "2026-10-24T13:10:00.000Z",
+        "actor": "Admin (Sanitation Inspector)",
+        "note": "Sanitation truck scheduled for evening clearance round."
+      }
+    ],
+    "agentTrace": [
+      { "step": "vision_analysis", "detail": "Identified scattered domestic and commercial plastic waste.", "mode": "demo" },
+      { "step": "ward_lookup", "detail": "Mapped 'Satellite' to Satellite & Jodhpur Ward #15.", "mode": "rule" },
+      { "step": "dept_lookup", "detail": "Routing to Solid Waste Management.", "mode": "rule" }
+    ],
+    "analysisMode": "demo",
+    "demoOnly": true
+  },
+  {
+    "ticketId": "CIV-2026-0003",
+    "issueType": "broken_streetlight",
+    "categoryLabel": "Broken Streetlight",
+    "description": "Flickering street lamp with exposed junction box near Pakwan junction",
+    "severity": "medium",
+    "impactScore": 62,
+    "imagePath": "/sample-images/streetlight.jpg",
+    "areaName": "Bodakdev",
+    "wardId": "DEMO-WARD-02",
+    "wardName": "Bodakdev & Judges Bungalow Ward #12",
+    "departmentId": "DEMO-LIGHT",
+    "departmentName": "Streetlight & Electrical Infrastructure",
+    "status": "Resolved",
+    "citizenContact": "9712398765",
+    "createdAt": "2026-10-23T19:20:00.000Z",
+    "updatedAt": "2026-10-24T09:00:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-10-23T19:20:00.000Z",
+        "actor": "Citizen (CivicSathi AI)",
+        "note": "Night visibility hazard reported."
+      },
+      {
+        "status": "In Progress",
+        "timestamp": "2026-10-24T08:15:00.000Z",
+        "actor": "Admin (Lineman)",
+        "note": "Wiring and LED luminaire replacement underway."
+      },
+      {
+        "status": "Resolved",
+        "timestamp": "2026-10-24T09:00:00.000Z",
+        "actor": "Admin (Field Supervisor)",
+        "note": "Streetlight unit restored and circuit tested safely."
+      }
+    ],
+    "agentTrace": [
+      { "step": "vision_analysis", "detail": "Vision identified broken luminaire and damaged pole fixture.", "mode": "demo" },
+      { "step": "ward_lookup", "detail": "Mapped 'Bodakdev' to Bodakdev Ward #12.", "mode": "rule" },
+      { "step": "dept_lookup", "detail": "Assigned to Streetlight & Electrical Infrastructure.", "mode": "rule" }
+    ],
+    "analysisMode": "demo",
+    "demoOnly": true
+  }
+]
